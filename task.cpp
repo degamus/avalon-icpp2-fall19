@@ -18,7 +18,7 @@ void Generator(Student data[], int size)
 	{
 		data[i].Id = GetRandomValue(1, 1000);
 	}
-		
+
 	for (int i = 0; i < size; i++)
 	{
 		data[i].Graid = GetRandomValue(0, 100);;
@@ -54,6 +54,11 @@ void Sort(Student data[], int size, int setting)
 				}
 			}
 		}
+		cout << "Sorted by ID:" << endl;
+		for (int i = 0; i < size; i++)
+		{
+			cout << data[i].Id << " " << data[i].Graid << " " << data[i].Name << endl;
+		}
 	}
 	if (setting == 2)
 	{
@@ -69,12 +74,33 @@ void Sort(Student data[], int size, int setting)
 				}
 			}
 		}
-
+		cout << "Sorted by Grade:" << endl;
+		for (int i = 0; i < size; i++)
+		{
+			cout << data[i].Graid << " " << data[i].Id << " " << data[i].Name << endl;
+		}
 	}
 	if (setting == 3)
 	{
-
+		for (int i = 0; i < size - 1; i++)
+		{
+			for (int j = 0; j < size - 1 - i; j++)
+			{
+				if (data[j].Name > data[j + 1].Name)
+				{
+					string temp = data[j].Name;
+					data[j].Name = data[j + 1].Name;
+					data[j + 1].Name = temp;
+				}
+			}
+		}
+		cout << "Sorted by Name:" << endl;
+		for (int i = 0; i < size; i++)
+		{
+			cout << data[i].Name << " " << data[i].Id << " " << data[i].Graid << endl;
+		}
 	}
+
 }
 
 
@@ -96,9 +122,9 @@ int main()
 	else
 		if (SortSetting == 2)
 		{
-		Sort(datapack, N, 2);
+			Sort(datapack, N, 2);
 		}
-		else 
+		else
 			if (SortSetting == 3)
 			{
 				Sort(datapack, N, 3);
