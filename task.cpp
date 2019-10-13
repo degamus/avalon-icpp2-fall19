@@ -18,7 +18,7 @@ void Generator(Student data[], int size)
 	{
 		data[i].Id = GetRandomValue(1, 1000);
 	}
-
+		
 	for (int i = 0; i < size; i++)
 	{
 		data[i].Graid = GetRandomValue(0, 100);;
@@ -54,10 +54,9 @@ void Sort(Student data[], int size, int setting)
 				}
 			}
 		}
-		cout << "Sorted by ID:" << endl;
 		for (int i = 0; i < size; i++)
 		{
-			cout << data[i].Id << " " << data[i].Graid << " " << data[i].Name << endl;
+			cout << data[i].Id << " " << data[i].Name << " " << data[i].Graid << endl;
 		}
 	}
 	if (setting == 2)
@@ -74,10 +73,9 @@ void Sort(Student data[], int size, int setting)
 				}
 			}
 		}
-		cout << "Sorted by Grade:" << endl;
 		for (int i = 0; i < size; i++)
 		{
-			cout << data[i].Graid << " " << data[i].Id << " " << data[i].Name << endl;
+			cout << data[i].Id << " " << data[i].Name << " " << data[i].Graid << endl;
 		}
 	}
 	if (setting == 3)
@@ -94,15 +92,28 @@ void Sort(Student data[], int size, int setting)
 				}
 			}
 		}
-		cout << "Sorted by Name:" << endl;
 		for (int i = 0; i < size; i++)
 		{
-			cout << data[i].Name << " " << data[i].Id << " " << data[i].Graid << endl;
+			cout << data[i].Id << " " << data[i].Name << " " << data[i].Graid << endl;
 		}
 	}
-
 }
 
+void BetterTheBest(Student data[], int size)
+{
+	int avg = 0;
+
+	for (int i = 0; i < size; i++)
+	{
+		avg += data[i].Graid;
+	}
+	avg = avg / size;
+	cout << avg << endl;
+	cout << "To be better than 25% you need: " << avg + (avg / 4) << endl;
+	cout << "To be better than 50% you need: " << avg + (avg / 2) << endl;
+	cout << "To be better than 75% you need: " << avg + ((3 * avg) / 4) << endl;
+	cout << "To be better than 90% you need: " << avg + ((9 * avg) / 10) << endl;
+}
 
 int main()
 {
@@ -122,9 +133,9 @@ int main()
 	else
 		if (SortSetting == 2)
 		{
-			Sort(datapack, N, 2);
+		Sort(datapack, N, 2);
 		}
-		else
+		else 
 			if (SortSetting == 3)
 			{
 				Sort(datapack, N, 3);
@@ -133,5 +144,6 @@ int main()
 			{
 				cout << "You chose incorrect setting. Please try again." << endl;
 			}
-
+	cout << "" << endl;
+	BetterTheBest(datapack, N);
 }
