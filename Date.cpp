@@ -182,6 +182,107 @@ namespace ext
 		return !(lhs > rhs);
 	}
 
+	Date converter(TimeDelta delta) 
+	{
+		Date result;
+		int a = delta.delta + 32044;
+		int b = ((4 * a) + 3) / 146097;
+		int c = a - ((146097 * b) / 4);
+		int d = ((4 * c) + 3) / 1461;
+		int e = c - ((1461 * d) / 4);
+		int m = ((5 * e) + 2) / 153;
+		result.day = e - ((153 * m + 2) / 5) + 1;
+		result.month = static_cast<Month>(m + 3 - 12 * (m / 10));
+		result.year = (100 * b) + d - 4800 + (m / 10);
+		return result;
+	}
+	TimeDelta operator + (const TimeDelta lhs, const TimeDelta rhs) {
+		TimeDelta sum;
+		sum.delta = lhs.delta + rhs.delta;
+		return sum;
+	}
+	Date operator + (const Date date, const TimeDelta delta) {
+		TimeDelta sum = countJND(date);
+		return JDNToDate(sum + delta);
+	}
+	Date operator + (const TimeDelta delta, const Date date) {
+		TimeDelta sum = countJND(date);
+		return JDNToDate(sum + delta);
+	}
+	TimeDelta operator - (const TimeDelta lhs, const TimeDelta rhs) {
+		TimeDelta sum;
+		sum.delta = lhs.delta - rhs.delta;
+		return sum;
+	}
+	Date operator - (const Date date, const TimeDelta delta) {
+		TimeDelta one = countJND(date);
+		return JDNToDate(sum - delta);
+	}
+	Date operator - (const TimeDelta delta, const Date date) {
+		TimeDelta one = countJND(date);
+		return JDNToDate(sum - delta);
+	}
+	TimeDelta operator * (const TimeDelta delta, int multiplier) {
+		TimeDelta one;
+		one.delta = (delta.delta * multiplier);
+		return sum;
+	}
+	TimeDelta operator / (const TimeDelta delta, int multiplier) {
+		TimeDelta one;
+		one.delta = (delta.delta / multiplier);
+		return sum;
+	}
+	TimeDelta operator ++ (TimeDelta& delta)
+	{
+		++delta.delta;
+		return delta;
+	}
+	TimeDelta operator ++ (TimeDelta& delta, int)
+	{
+
+		++delta.delta;
+		return delta;
+	}
+	TimeDelta operator -- (TimeDelta& delta)
+	{
+		--delta.delta;
+		return delta;
+	}
+	TimeDelta operator -- (TimeDelta& delta, int)
+	{
+
+		--delta.delta;
+		return delta;
+	}
+	Date operator ++ (Date& delta)
+	{
+		delta.day++;
+		delta.year++;
+		delta.month = static_cast<Month>(static_cast<int>(delta.month) + 1);
+		return delta;
+	}
+	Date operator ++ (Date& delta, int)
+	{
+		delta.day++;
+		delta.year++;
+		delta.month = static_cast<Month>(static_cast<int>(delta.month) + 1);
+		return delta;
+	}
+	Date operator -- (Date& delta)
+	{
+		delta.day--;
+		delta.year--;
+		delta.month = static_cast<Month>(static_cast<int>(delta.month) + 1);
+		return delta;
+	}
+	Date operator -- (Date& delta, int)
+	{
+		delta.day--;
+		delta.year--;
+		delta.month = static_cast<Month>(static_cast<int>(delta.month) + 1);
+		return delta;
+	}
+
 	void swap(Date& lhs, Date& rhs)
 	{
 		int temp = 0;
