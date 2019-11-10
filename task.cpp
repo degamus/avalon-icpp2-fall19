@@ -101,20 +101,21 @@ void Sort(Student data[], int size, int setting)
 
 void BetterTheBest(Student data[], int size)
 {
-	int avg = 0;
+	Student SortedDataPack[N];
+	Sort(data, size, 2);
 
 	for (int i = 0; i < size; i++)
 	{
-		avg += data[i].Graid;
+		SortedDataPack[i].Id = data[i].Id;
+		SortedDataPack[i].Graid = data[i].Graid;
+		SortedDataPack[i].Graid = data[i].Graid;
 	}
-	avg = avg / size;
-	cout << avg << endl;
-	cout << "To be better than 25% you need: " << avg + (avg / 4) << endl;
-	cout << "To be better than 50% you need: " << avg + (avg / 2) << endl;
-	cout << "To be better than 75% you need: " << avg + ((3 * avg) / 4) << endl;
-	cout << "To be better than 90% you need: " << avg + ((9 * avg) / 10) << endl;
-}
 
+	cout << "To be better than 25% you need to get " << SortedDataPack[(N / 4) + 1].Graid << endl;
+	cout << "To be better than 50% you need to get " << SortedDataPack[(N / 2) + 1].Graid << endl;
+	cout << "To be better than 75% you need to get " << SortedDataPack[(N - (N / 4)) + 1].Graid << endl;
+
+}
 int main()
 {
 	int SortSetting = 0;
