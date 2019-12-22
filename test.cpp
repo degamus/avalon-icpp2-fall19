@@ -66,11 +66,7 @@ void AddBooks()
 {
 	int size = 0;
 	Book tempBook = {};
-	char Title[Book::BUFFER_SIZE];
-	char Author[Book::BUFFER_SIZE];
-	float Price;
-	int Quantity;
-
+	
 	cout << "Enter the title of the book you want to add" << endl;
 	cin >> tempBook.Title;
 	cout << "Enter the author of the book you want to add" << endl;	
@@ -112,7 +108,7 @@ void SortedListOfBooks()
 
 	for (int i = 0; i < count; i++) {
 		for (int j = 0; j < count; j++) {
-			if (books[j].Author > books[j+1].Author) {
+			if (string(books[j].Author) > string(books[j+1].Author)) {
 				swap(books[j], books[j+1]);
 			}
 		}
@@ -120,7 +116,7 @@ void SortedListOfBooks()
 
 	for (int i = 0; i < count; i++) {
 		for (int j = 0; j < count; j++) {
-			if (books[j].Author == books[j+1].Author && books[j].Title > books[j+1].Title) {
+			if (string(books[j].Author) == string(books[j+1].Author) && string(books[j].Title) > string(books[j+1].Title)) {
 				swap(books[j], books[j+1]);
 			}
 		}
